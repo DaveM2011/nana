@@ -57,7 +57,7 @@ namespace nana
 
 		/// Enables the image to be stretched to the widget size.
 		void stretchable(unsigned left, unsigned top, unsigned right, unsigned bottom);
-		
+
 		/// Enables/disable the image to be repeated without changing aspect ratio.
 		void repeatable(bool);
 		
