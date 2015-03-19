@@ -43,6 +43,7 @@ namespace nana
 					::nana::align_v align_vert{ ::nana::align_v::top };
 					std::unique_ptr<element::bground> bground;	//If it is not a null ptr, the widget is stretchable mode
 					bool			stretchable{ false };		//If it is true, the widget is stretchable mode without changing aspect ratio.
+					bool			repeatable{ false };		//If it is true, the widget is repeatable mode without changing aspect ratio.
 				}backimg;
 			};
 
@@ -113,6 +114,20 @@ namespace nana
 							_m_draw_background();
 
 						backimg.image.stretch(valid_area, graph, { pos, fit_size });
+					}
+					else if (backimg.repeatable)
+					{
+						if (valid_area.width < graphsize.width || valid_area.height < graphsize.height)
+							_m_draw_background();
+						int x, y;
+						for (y = 0; y < graphsize.height; y += valid_area.height)
+						{
+							for (x = 0; x < graphsize.width; x += valid_area.width)
+							{
+								backimg.image.paste(graph, x, y);
+							}
+							x = 0;
+						}
 					}
 					else
 					{
