@@ -206,6 +206,10 @@ namespace paint
 					else if(STR(".PNG") == suffix)
 						helper = new detail::image_png;
 #endif
+#if defined(NANA_ENABLE_JPG)
+					else if (STR(".JPG") == suffix)
+						helper = new detail::image_jpg;
+#endif
 				}
 				
 				if(0 == helper)
